@@ -85,13 +85,13 @@ correspondiente, que se ha cobrado previamente el sistema.
 * Miguel Calderón Sang.  
 * Xinyu Li.  
 
-#####IDE IntelliJ:
+##### IDE IntelliJ:
 * Preparar IntelliJ, de modo que todo  
 el código debe estar formateado mediante  
 Code -> Reformat Code, con los chekbox   
 [x]Optimize imports activado,   
 [x]Rearrange entries activado.
-#####Importar proyecto  
+##### Importar proyecto  
 https://github.com/ATorreclla/MDWSpring
 
 
