@@ -6,7 +6,7 @@ Una empresa hotelera desea revolucionar el alquiler de
 habitaciones de hotel mediante la oferta de habitaciones   
 por horas. Para ello, desea realizar una aplicación web   
 para la gestión de la disponibilidad y de las reservas   
-online de las habitaciones. Para alcanzar este objetivo, 
+online de las habitaciones. Para alcanzar este objetivo,   
 ha encomendado a los profesores de Metodologías de Desarrollo Web   
 verificar el avance del proyecto e interactuar con los equipos   
 de desarrollo de la ETSISI.
@@ -34,7 +34,7 @@ De cada habitación, se desea conocer el tipo de habitación:
 individual, doble, triple o suite. Además, se deben conocer los servicios   
 adicionales de los que dispone la habitación: televisión, Internet,   
 aire acondicionado, minibar, jacuzzi, etc. Para cada habitación,   
-se establecerá además el precio por hora de la misma. 
+se establecerá además el precio por hora de la misma.   
 Los clientes, deben poder buscar, a través de Internet, habitaciones por   
 diferentes criterios: ubicación, nombre de hotel, fecha y franja horaria.   
 Una vez localizado un hotel que disponga de habitaciones que encajen en sus   
