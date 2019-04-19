@@ -1,5 +1,6 @@
 # Proyecto con Metodologías Ligeras MDW
 #### Máster en Ingeniería Web por la U.P.M.
+#### Metodologías de Desarrollo Web
 #### Descripción de la práctica:
 Una empresa hotelera desea revolucionar el alquiler de   
 habitaciones de hotel mediante la oferta de habitaciones   
@@ -75,7 +76,7 @@ que el cliente ha acudido al hotel, para posteriormente recibir la liquidación
 correspondiente, que se ha cobrado previamente el sistema.  
 
 ##### Integrantes del equipo de desarrollo:  
-* Sandra Ortega Sánchez: Product Ownwer.  
+* Sandra Ortega Sánchez: Product Owner.  
 * Eric Aldas: Scrum Master.  
 * Alberto García Garabal.  
 * Ramón Roca Martínez.  
@@ -83,6 +84,15 @@ correspondiente, que se ha cobrado previamente el sistema.
 * Bruno Martín López.  
 * Miguel Calderón Sang.  
 * Xinyu Li.  
+
+#####IDE IntelliJ:
+* Preparar IntelliJ, de modo que todo  
+el código debe estar formateado mediante  
+Code -> Reformat Code, con los chekbox   
+[x]Optimize imports activado,   
+[x]Rearrange entries activado.
+#####Importar proyecto  
+https://github.com/ATorreclla/MDWSpring
 
 
 
