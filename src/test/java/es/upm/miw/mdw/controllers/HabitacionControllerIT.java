@@ -1,4 +1,4 @@
-package es.upm.miw.mdw.repositories;
+package es.upm.miw.mdw.controllers;
 
 import es.upm.miw.mdw.TestConfig;
 import es.upm.miw.mdw.services.DBService;
@@ -6,16 +6,15 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import static org.junit.jupiter.api.Assertions.*;
 
 @TestConfig
-class HabitacionRepositoryIT {
-
-    @Autowired
-    private HabitacionRepository habitacionRepository;
+public class HabitacionControllerIT {
 
     @Autowired
     private DBService dbService;
+
+    @Autowired
+    private HabitacionController habitacionController;
 
     @BeforeEach
     void setUpTests (){
@@ -23,8 +22,8 @@ class HabitacionRepositoryIT {
     }
 
     @Test
-    void testReadHabitacion(){
-        assertNotNull(habitacionRepository.findFirstByCodigoHabitacion("17"));
+    void testValidateHabitacion (){
+
     }
 
     @AfterEach
