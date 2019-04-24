@@ -4,6 +4,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -21,10 +22,11 @@ public class Habitacion {
 
     private float precioHora;
 
-    @DBRef(lazy = true)
+    @DBRef()
     private List<Reserva> reservas;
 
     public Habitacion() {
+        reservas = new ArrayList<>();
     }
 
     public String getNombreHotel() {
@@ -71,8 +73,8 @@ public class Habitacion {
         return reservas;
     }
 
-    public void setReservas(List<Reserva> reservas) {
-        this.reservas = reservas;
+    public void addReserva(Reserva reserva) {
+        this.reservas.add(reserva);
     }
 
     @Override
