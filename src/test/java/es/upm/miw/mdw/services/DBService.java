@@ -30,6 +30,10 @@ public class DBService {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         reserva1.setFechaHoraReservaInicio(LocalDateTime.parse(inicio, formatter));
         reserva1.setFechaHoraReservaFin(LocalDateTime.parse(fin,formatter));
+        inicio = "2019-04-15 18:00";
+        fin = "2019-04-15 21:00";
+        reserva2.setFechaHoraReservaInicio(LocalDateTime.parse(inicio, formatter));
+        reserva2.setFechaHoraReservaFin(LocalDateTime.parse(fin,formatter));
         habitacion.addReserva(reserva1);
         habitacion.addReserva(reserva2);
         reservaRepository.save(reserva1);

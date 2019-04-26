@@ -31,8 +31,6 @@ public class HabitacionControllerIT {
 
     @Test
     void testValidateHabitacion() {
-        String inicio = "2019-04-30 18:00";
-        String fin = "2019-04-30 19:00";
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         assertDoesNotThrow(() -> habitacionController.isValidTimeForHabitacion("17",
                 LocalDateTime.parse("2019-04-29 18:00", formatter), LocalDateTime.parse("2019-04-29 19:00", formatter)));
@@ -42,10 +40,10 @@ public class HabitacionControllerIT {
                 LocalDateTime.parse("2019-04-30 18:00", formatter), LocalDateTime.parse("2019-04-30 19:00", formatter)));
         assertThrows(ConflictException.class, () -> habitacionController.isValidTimeForHabitacion("17",
                 LocalDateTime.parse("2019-04-30 15:00", formatter), LocalDateTime.parse("2019-04-30 19:00", formatter)));
-        assertThrows(BadRequestException.class, () -> habitacionController.isValidTimeForHabitacion("1",
-                LocalDateTime.parse("2019-04-30 17:00", formatter), LocalDateTime.parse("2019-04-30 22:00", formatter)));
-        assertThrows(BadRequestException.class, () -> habitacionController.isValidTimeForHabitacion("1",
-                LocalDateTime.parse("2019-04-30 20:00", formatter), LocalDateTime.parse("2019-04-30 22:00", formatter)));
+        assertThrows(ConflictException.class, () -> habitacionController.isValidTimeForHabitacion("17",
+                LocalDateTime.parse("2019-04-30 19:00", formatter), LocalDateTime.parse("2019-04-30 22:00", formatter)));
+        assertThrows(ConflictException.class, () -> habitacionController.isValidTimeForHabitacion("17",
+                LocalDateTime.parse("2019-04-30 15:00", formatter), LocalDateTime.parse("2019-04-30 22:00", formatter)));
     }
 
     @AfterEach
