@@ -1,5 +1,6 @@
 package es.upm.miw.mdw.rest_controllers;
 
+import es.upm.miw.mdw.documents.Reserva;
 import es.upm.miw.mdw.dtos.ReservaDto;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,7 +19,8 @@ public class BookingResource {
 
     @PostMapping(value = SAVE)
     public ReservaDto save(@RequestBody ReservaDto dto){
-        System.out.println("Se llama a mi endpoint");
+        Reserva reserva = new Reserva();
+
         return dto;
     }
 }
