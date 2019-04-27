@@ -25,8 +25,8 @@ public class ReservaDtoTest {
         Reserva reserva = reservaDto.toDocument();
         assertEquals(reservaDto.getCodigoHabitacion(),reserva.getCodigoHabitacion());
         assertEquals(reservaDto.getCorreCliente(),reserva.getCorreCliente());
-        assertEquals(reservaDto.getFechaInicio(),reserva.getFechaHoraReservaInicio());
-        assertEquals(reservaDto.getFechaFin(),reserva.getFechaHoraReservaFin());
+        assertEquals(reservaDto.getFechaInicio(),formatter.format(reserva.getFechaHoraReservaInicio()));
+        assertEquals(reservaDto.getFechaFin(),formatter.format(reserva.getFechaHoraReservaFin()));
         assertEquals(reservaDto.getNombreCliente(),reserva.getNombreCliente());
     }
 }
