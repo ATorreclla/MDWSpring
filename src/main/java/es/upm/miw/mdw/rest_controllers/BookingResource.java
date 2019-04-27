@@ -1,5 +1,6 @@
 package es.upm.miw.mdw.rest_controllers;
 
+import es.upm.miw.mdw.documents.Reserva;
 import es.upm.miw.mdw.controllers.HabitacionController;
 import es.upm.miw.mdw.dtos.ReservaDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,8 +25,8 @@ public class BookingResource {
     HabitacionController habitacionController;
 
     @PostMapping(value = SAVE)
-    public ReservaDto save(@RequestBody ReservaDto dto) {
-        System.out.println("Se llama a mi endpoint");
+    public ReservaDto save(@RequestBody ReservaDto dto){
+        Reserva reserva = new Reserva();
         return dto;
     }
 

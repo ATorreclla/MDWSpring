@@ -1,6 +1,14 @@
 package es.upm.miw.mdw.dtos;
 
+import es.upm.miw.mdw.documents.Reserva;
+import org.springframework.beans.BeanUtils;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 public class ReservaDto {
+
+    private static final String DATE_FORMATTER= "yyyy-MM-dd HH:mm:ss";
 
     private String id;
 
@@ -70,5 +78,14 @@ public class ReservaDto {
 
     public void setCorreCliente(String correCliente) {
         this.correCliente = correCliente;
+    }
+
+    public Reserva toDocument(){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_FORMATTER);
+        Reserva reserva = new Reserva();
+        BeanUtils.copyProperties(this, reserva);
+        reserva.setFechaHoraReservaInicio(LocalDateTime.parse(this.getFechaInicio(),formatter));
+        reserva.setFechaHoraReservaFin(LocalDateTime.parse(this.getFechaFin(),formatter));
+        return reserva;
     }
 }
