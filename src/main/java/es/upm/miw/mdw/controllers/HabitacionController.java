@@ -5,6 +5,7 @@ import es.upm.miw.mdw.documents.Reserva;
 import es.upm.miw.mdw.exceptions.BadRequestException;
 import es.upm.miw.mdw.exceptions.ConflictException;
 import es.upm.miw.mdw.repositories.HabitacionRepository;
+import es.upm.miw.mdw.repositories.ReservaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
@@ -16,12 +17,15 @@ public class HabitacionController {
     @Autowired
     private HabitacionRepository habitacionRepository;
 
+    @Autowired
+    private ReservaRepository reservaRepository;
+
     public void isValidTimeForHabitacion(String codigoHabitacion, LocalDateTime fechaHoraReservaInicio, LocalDateTime fechaHoraReservaFin) {
         Habitacion habitacion = habitacionRepository.findFirstByCodigoHabitacion(codigoHabitacion);
         if (habitacion == null) {
             throw new BadRequestException("Bad habitacion code supplied");
         }
-        for (Reserva reserva : habitacion.getReservas()) {
+        for (Reserva reserva : reservaRepository.findByCodigoHabitacion(habitacion.getCodigoHabitacion())) {
             LocalDateTime inicio = reserva.getFechaHoraReservaInicio();
             LocalDateTime fin = reserva.getFechaHoraReservaFin();
             if (

@@ -36,14 +36,14 @@ public class HabitacionControllerIT {
                 LocalDateTime.parse("2019-04-29 18:00", formatter), LocalDateTime.parse("2019-04-29 19:00", formatter)));
         assertThrows(BadRequestException.class, () -> habitacionController.isValidTimeForHabitacion("1",
                 LocalDateTime.parse("2019-04-29 18:00", formatter), LocalDateTime.parse("2019-04-29 19:00", formatter)));
-        assertThrows(ConflictException.class, () -> habitacionController.isValidTimeForHabitacion("17",
-                LocalDateTime.parse("2019-04-30 18:00", formatter), LocalDateTime.parse("2019-04-30 19:00", formatter)));
-        assertThrows(ConflictException.class, () -> habitacionController.isValidTimeForHabitacion("17",
-                LocalDateTime.parse("2019-04-30 15:00", formatter), LocalDateTime.parse("2019-04-30 19:00", formatter)));
-        assertThrows(ConflictException.class, () -> habitacionController.isValidTimeForHabitacion("17",
-                LocalDateTime.parse("2019-04-30 19:00", formatter), LocalDateTime.parse("2019-04-30 22:00", formatter)));
-        assertThrows(ConflictException.class, () -> habitacionController.isValidTimeForHabitacion("17",
-                LocalDateTime.parse("2019-04-30 15:00", formatter), LocalDateTime.parse("2019-04-30 22:00", formatter)));
+        assertThrows(ConflictException.class, () -> habitacionController.isValidTimeForHabitacion("1745645",
+                LocalDateTime.parse("2019-05-01 10:00", formatter), LocalDateTime.parse("2019-05-01 19:00", formatter)));
+        assertThrows(ConflictException.class, () -> habitacionController.isValidTimeForHabitacion("1745645",
+                LocalDateTime.parse("2019-04-30 13:00", formatter), LocalDateTime.parse("2019-05-30 19:00", formatter)));
+        assertThrows(ConflictException.class, () -> habitacionController.isValidTimeForHabitacion("1745645",
+                LocalDateTime.parse("2019-05-01 12:00", formatter), LocalDateTime.parse("2019-05-01 14:00", formatter)));
+        assertThrows(ConflictException.class, () -> habitacionController.isValidTimeForHabitacion("1745645",
+                LocalDateTime.parse("2019-05-01 13:00", formatter), LocalDateTime.parse("2019-04-30 22:00", formatter)));
     }
 
     @AfterEach

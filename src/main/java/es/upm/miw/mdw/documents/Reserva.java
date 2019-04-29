@@ -22,7 +22,7 @@ public class Reserva {
 
     private String nombreCliente;
 
-    private String correCliente;
+    private String correoCliente;
 
     public String getCodigoReserva() {
         return codigoReserva;
@@ -72,12 +72,12 @@ public class Reserva {
         this.nombreCliente = nombreCliente;
     }
 
-    public String getCorreCliente() {
-        return correCliente;
+    public String getCorreoCliente() {
+        return correoCliente;
     }
 
-    public void setCorreCliente(String correCliente) {
-        this.correCliente = correCliente;
+    public void setCorreoCliente(String correoCliente) {
+        this.correoCliente = correoCliente;
     }
 
     @Override
@@ -89,7 +89,7 @@ public class Reserva {
                 ", fechaHoraReservaFin=" + fechaHoraReservaFin +
                 ", precioReserva=" + precioReserva +
                 ", nombreCliente='" + nombreCliente + '\'' +
-                ", correCliente='" + correCliente + '\'' +
+                ", correCliente='" + correoCliente + '\'' +
                 '}';
     }
 
@@ -104,12 +104,12 @@ public class Reserva {
                 Objects.equals(getFechaHoraReservaInicio(), reserva.getFechaHoraReservaInicio()) &&
                 Objects.equals(getFechaHoraReservaFin(), reserva.getFechaHoraReservaFin()) &&
                 Objects.equals(getNombreCliente(), reserva.getNombreCliente()) &&
-                Objects.equals(getCorreCliente(), reserva.getCorreCliente());
+                Objects.equals(getCorreoCliente(), reserva.getCorreoCliente());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getCodigoReserva(), getCodigoHabitacion(), getFechaHoraReservaInicio(), getFechaHoraReservaFin(), getPrecioReserva(), getNombreCliente(), getCorreCliente());
+        return Objects.hash(getCodigoReserva(), getCodigoHabitacion(), getFechaHoraReservaInicio(), getFechaHoraReservaFin(), getPrecioReserva(), getNombreCliente(), getCorreoCliente());
     }
 
 }

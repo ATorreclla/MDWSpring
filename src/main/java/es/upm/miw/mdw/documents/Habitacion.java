@@ -22,11 +22,7 @@ public class Habitacion {
 
     private float precioHora;
 
-    @DBRef()
-    private List<Reserva> reservas;
-
     public Habitacion() {
-        reservas = new ArrayList<>();
     }
 
     public String getNombreHotel() {
@@ -69,12 +65,8 @@ public class Habitacion {
         this.precioHora = precioHora;
     }
 
-    public List<Reserva> getReservas() {
-        return reservas;
-    }
-
     public void addReserva(Reserva reserva) {
-        this.reservas.add(reserva);
+        reserva.setCodigoHabitacion(this.getCodigoHabitacion());
     }
 
     @Override
@@ -85,7 +77,6 @@ public class Habitacion {
                 ", ubicacion='" + ubicacion + '\'' +
                 ", tipoHabitacion=" + tipoHabitacion +
                 ", precioHora=" + precioHora +
-                ", reservas=" + reservas +
                 '}';
     }
 
@@ -98,13 +89,12 @@ public class Habitacion {
                 Objects.equals(getNombreHotel(), that.getNombreHotel()) &&
                 Objects.equals(getCodigoHabitacion(), that.getCodigoHabitacion()) &&
                 Objects.equals(getUbicacion(), that.getUbicacion()) &&
-                getTipoHabitacion() == that.getTipoHabitacion() &&
-                Objects.equals(getReservas(), that.getReservas());
+                getTipoHabitacion() == that.getTipoHabitacion();
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getNombreHotel(), getCodigoHabitacion(), getUbicacion(), getTipoHabitacion(), getPrecioHora(), getReservas());
+        return Objects.hash(getNombreHotel(), getCodigoHabitacion(), getUbicacion(), getTipoHabitacion(), getPrecioHora());
     }
 
 }

@@ -27,6 +27,13 @@ class HabitacionRepositoryIT {
         assertNotNull(habitacionRepository.findFirstByCodigoHabitacion("17"));
     }
 
+    @Test
+    void testFindRoomByLocation(){
+        assertEquals(2, habitacionRepository.findByUbicacionIgnoreCase("valencia").size());
+        assertEquals(1, habitacionRepository.findByUbicacionIgnoreCase("alicante").size());
+        assertEquals(0, habitacionRepository.findByUbicacionIgnoreCase("madrid").size());
+    }
+
     @AfterEach
     void clean (){
         dbService.deleteAll();
