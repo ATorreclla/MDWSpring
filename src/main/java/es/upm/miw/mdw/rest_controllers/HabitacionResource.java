@@ -14,10 +14,12 @@ public class HabitacionResource {
 
     public static final String HABITACIONES = "/habitaciones";
 
+    public static final String QUERY = "/query";
+
     @Autowired
     private HabitacionController habitacionController;
 
-    @PostMapping
+    @PostMapping(value = QUERY)
     public List<HabitacionDTO> queryHabitaciones(@RequestBody HabitacionQueryDTO habitacionQueryDTO) {
         return this.habitacionController.queryHabitaciones(habitacionQueryDTO);
     }

@@ -40,7 +40,7 @@ public class HabitacionResourceIT {
         LocalDateTime fechaHoraReservaFin = LocalDateTime.parse("2019-04-15 21:00",formatter);
 
         List<HabitacionDTO> habitaciones = Arrays.asList(this.restService.restBuilder(new RestBuilder<HabitacionDTO[]>())
-                .clazz(HabitacionDTO[].class).path(HabitacionResource.HABITACIONES)
+                .clazz(HabitacionDTO[].class).path(HabitacionResource.HABITACIONES).path(HabitacionResource.QUERY)
                 .body(new HabitacionQueryDTO(fechaHoraReservaInicio, fechaHoraReservaFin, "Alicante")).post().build());
         System.out.println(habitaciones);
         assertNotNull(habitaciones);
