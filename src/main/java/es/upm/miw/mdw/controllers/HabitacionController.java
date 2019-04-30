@@ -7,11 +7,13 @@ import es.upm.miw.mdw.repositories.ReservaRepository;
 import es.upm.miw.mdw.data_services.RoomSearchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-
 import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
+import es.upm.miw.mdw.repositories.HabitacionRepository;
+
+
 
 @Controller
 public class HabitacionController {
@@ -21,6 +23,9 @@ public class HabitacionController {
 
     @Autowired
     private RoomSearchService roomSearchService;
+
+    @Autowired
+    private HabitacionRepository habitacionRepository;
 
 
     public List<HabitacionDTO> queryHabitaciones(HabitacionQueryDTO query) {
@@ -33,4 +38,6 @@ public class HabitacionController {
                 .map(habitacion -> new HabitacionDTO(habitacion))
                 .collect(Collectors.toList());
     }
+
+
 }
