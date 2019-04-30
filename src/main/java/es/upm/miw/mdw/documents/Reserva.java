@@ -1,6 +1,7 @@
 package es.upm.miw.mdw.documents;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
@@ -23,6 +24,13 @@ public class Reserva {
     private String nombreCliente;
 
     private String correCliente;
+
+
+    public Reserva() {}
+
+    public Reserva(String codigoHabitacion) {
+        this.codigoHabitacion = codigoHabitacion;
+    }
 
     public String getCodigoReserva() {
         return codigoReserva;

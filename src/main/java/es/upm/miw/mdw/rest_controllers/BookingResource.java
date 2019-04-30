@@ -30,12 +30,4 @@ public class BookingResource {
         return dto;
     }
 
-    @GetMapping(value = SAVE + VALIDATION)
-    public void isValidTimeForHabitacion(@PathVariable String codigoHabitacion, @RequestParam String fechaHoraReservaInicio,
-                                         @RequestParam String fechaHoraReservaFin) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-        habitacionController.isValidTimeForHabitacion(codigoHabitacion, LocalDateTime.parse(fechaHoraReservaInicio, formatter),
-                LocalDateTime.parse(fechaHoraReservaFin, formatter));
-    }
-
 }

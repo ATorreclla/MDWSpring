@@ -1,8 +1,11 @@
-package es.upm.miw.mdw.rest_controllers;
+package es.upm.miw.mdw.controllers;
 
+import es.upm.miw.mdw.data_services.DBService;
 import es.upm.miw.mdw.dtos.ReservaDto;
-import es.upm.miw.mdw.exceptions.BadRequestException;
-import es.upm.miw.mdw.services.DBService;
+import es.upm.miw.mdw.rest_controllers.ApiTestConfig;
+import es.upm.miw.mdw.rest_controllers.BookingResource;
+import es.upm.miw.mdw.rest_controllers.RestBuilder;
+import es.upm.miw.mdw.rest_controllers.RestService;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

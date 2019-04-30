@@ -1,19 +1,11 @@
-package es.upm.miw.mdw.documents;
+package es.upm.miw.mdw.dtos;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.DBRef;
-import org.springframework.data.mongodb.core.mapping.Document;
+import es.upm.miw.mdw.documents.Habitacion;
+import es.upm.miw.mdw.documents.TipoHabitacion;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-
-@Document
-public class Habitacion {
-
+public class HabitacionDTO {
     private String nombreHotel;
 
-    @Id
     private String codigoHabitacion;
 
     private String ubicacion;
@@ -22,7 +14,16 @@ public class Habitacion {
 
     private float precioHora;
 
-    public Habitacion() {}
+    public HabitacionDTO() {}
+
+    public HabitacionDTO(Habitacion habitacion) {
+        this.nombreHotel = habitacion.getNombreHotel();
+        this.codigoHabitacion = habitacion.getCodigoHabitacion();
+        this.ubicacion = habitacion.getUbicacion();
+        this.tipoHabitacion = habitacion.getTipoHabitacion();
+        this.precioHora = habitacion.getPrecioHora();
+    }
+
 
     public String getNombreHotel() {
         return nombreHotel;
@@ -64,10 +65,9 @@ public class Habitacion {
         this.precioHora = precioHora;
     }
 
-
     @Override
     public String toString() {
-        return "Habitacion{" +
+        return "HabitacionDTO{" +
                 "nombreHotel='" + nombreHotel + '\'' +
                 ", codigoHabitacion='" + codigoHabitacion + '\'' +
                 ", ubicacion='" + ubicacion + '\'' +
@@ -75,22 +75,4 @@ public class Habitacion {
                 ", precioHora=" + precioHora +
                 '}';
     }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Habitacion)) return false;
-        Habitacion that = (Habitacion) o;
-        return Float.compare(that.getPrecioHora(), getPrecioHora()) == 0 &&
-                Objects.equals(getNombreHotel(), that.getNombreHotel()) &&
-                Objects.equals(getCodigoHabitacion(), that.getCodigoHabitacion()) &&
-                Objects.equals(getUbicacion(), that.getUbicacion()) &&
-                getTipoHabitacion() == that.getTipoHabitacion();
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getNombreHotel(), getCodigoHabitacion(), getUbicacion(), getTipoHabitacion(), getPrecioHora());
-    }
-
 }

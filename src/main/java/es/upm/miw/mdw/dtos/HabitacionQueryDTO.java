@@ -1,37 +1,56 @@
 package es.upm.miw.mdw.dtos;
-import com.fasterxml.jackson.annotation.JsonInclude;
-
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 
-@JsonInclude(JsonInclude.Include.NON_NULL)
 public class HabitacionQueryDTO {
 
+    @NotNull
     private LocalDateTime fechaHoraReservaInicio;
 
-    private Integer numeroHoras;
+    @NotNull
+    private LocalDateTime fechaHoraReservaFin;
 
+    @NotNull
     private String ubicacion;
 
-    public HabitacionQueryDTO() {}
+
+    public HabitacionQueryDTO(LocalDateTime fechaHoraReservaInicio, LocalDateTime fechaHoraReservaFin, String ubicacion) {
+        this.fechaHoraReservaFin = fechaHoraReservaFin;
+        this.fechaHoraReservaInicio = fechaHoraReservaInicio;
+        this.ubicacion = ubicacion;
+    }
+
 
     public LocalDateTime getFechaHoraReservaInicio() {
         return fechaHoraReservaInicio;
     }
 
-    public Integer getNumeroHoras() {
-        return numeroHoras;
+    public void setFechaHoraReservaInicio(LocalDateTime fechaHoraReservaInicio) {
+        this.fechaHoraReservaInicio = fechaHoraReservaInicio;
+    }
+
+    public LocalDateTime getFechaHoraReservaFin() {
+        return fechaHoraReservaFin;
+    }
+
+    public void setFechaHoraReservaFin(LocalDateTime fechaHoraReservaFin) {
+        this.fechaHoraReservaFin = fechaHoraReservaFin;
     }
 
     public String getUbicacion() {
         return ubicacion;
     }
 
+    public void setUbicacion(String ubicacion) {
+        this.ubicacion = ubicacion;
+    }
+
     @Override
     public String toString() {
         return "HabitacionQueryDTO{" +
                 "fechaHoraReservaInicio=" + fechaHoraReservaInicio +
-                ", numeroHoras=" + numeroHoras +
+                ", fechaHoraReservaFin=" + fechaHoraReservaFin +
                 ", ubicacion='" + ubicacion + '\'' +
                 '}';
     }
