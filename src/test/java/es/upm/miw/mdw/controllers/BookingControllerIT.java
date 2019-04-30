@@ -1,6 +1,10 @@
-package es.upm.miw.mdw.rest_controllers;
+package es.upm.miw.mdw.controllers;
 
 import es.upm.miw.mdw.dtos.ReservaDto;
+import es.upm.miw.mdw.rest_controllers.ApiTestConfig;
+import es.upm.miw.mdw.rest_controllers.BookingResource;
+import es.upm.miw.mdw.rest_controllers.RestBuilder;
+import es.upm.miw.mdw.rest_controllers.RestService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
