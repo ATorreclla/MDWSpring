@@ -42,20 +42,6 @@ public class DBService {
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
-        /*
-        Reserva reserva1 = new Reserva();
-        String inicio = "2019-05-01 12:00";
-        String fin = "2019-05-01 14:00";
-        reserva1.setCodigoHabitacion(habitacion2.getCodigoHabitacion());
-        reserva1.setFechaHoraReservaInicio(LocalDateTime.parse(inicio, formatter));
-        reserva1.setFechaHoraReservaFin(LocalDateTime.parse(fin,formatter));
-
-        Reserva reserva2 = new Reserva();
-        inicio = "2019-04-15 18:00";
-        fin = "2019-04-15 21:00";
-        reserva2.setFechaHoraReservaInicio(LocalDateTime.parse(inicio, formatter));
-        reserva2.setFechaHoraReservaFin(LocalDateTime.parse(fin,formatter));*/
-
         Reserva reserva1 = new Reserva();
         String inicio = "2019-05-01 12:00";
         String fin = "2019-05-01 14:00";
