@@ -37,18 +37,22 @@ public class BookingResourceIT {
         assertEquals(input.getNombreCliente(), output.getNombreCliente());
     }
 
-
+    @Test
     void testIsValidTimeForHabitacion() {
         assertDoesNotThrow(() ->
                 this.restService.restBuilder(new RestBuilder<>()).path(BookingResource.BOOKING).path(BookingResource.SAVE)
-                        .path(BookingResource.VALIDATION).expand("17").param("fechaHoraReservaInicio", "2019-04-29 18:00")
+                        .path(BookingResource.VALIDATION).expand("12").param("fechaHoraReservaInicio", "2019-04-29 18:00")
                         .param("fechaHoraReservaFin", "2019-04-29 19:00").get().build()
         );
-
+        assertThrows(HttpClientErrorException.BadRequest.class,()->
+                this.restService.restBuilder(new RestBuilder<>()).path(BookingResource.BOOKING).path(BookingResource.SAVE)
+                        .path(BookingResource.VALIDATION).expand("1").param("fechaHoraReservaInicio", "2019-04-29 18:00")
+                        .param("fechaHoraReservaFin", "2019-04-29 19:00").get().build()
+        );
         assertThrows(HttpClientErrorException.Conflict.class,()->
                 this.restService.restBuilder(new RestBuilder<>()).path(BookingResource.BOOKING).path(BookingResource.SAVE)
-                        .path(BookingResource.VALIDATION).expand("1745645").param("fechaHoraReservaInicio", "2019-05-01 12:00")
-                        .param("fechaHoraReservaFin", "2019-05-01 14:00").get().build()
+                        .path(BookingResource.VALIDATION).expand("12").param("fechaHoraReservaInicio", "2019-04-30 18:00")
+                        .param("fechaHoraReservaFin", "2019-04-30 19:00").get().build()
         );
     }
 
