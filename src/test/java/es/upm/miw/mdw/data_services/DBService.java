@@ -45,9 +45,17 @@ public class DBService {
         reserva1.setFechaHoraReservaInicio(LocalDateTime.parse(inicio, formatter));
         reserva1.setFechaHoraReservaFin(LocalDateTime.parse(fin,formatter));
 
+        Reserva reservaBruno = new Reserva();
+        inicio = "2019-04-30 18:00";
+        fin = "2019-04-30 21:00";
+        reservaBruno.setCodigoHabitacion(habitacion.getCodigoHabitacion());
+        reservaBruno.setFechaHoraReservaInicio(LocalDateTime.parse(inicio, formatter));
+        reservaBruno.setFechaHoraReservaFin(LocalDateTime.parse(fin,formatter));
+
         Reserva reserva2 = new Reserva();
         inicio = "2019-04-15 18:00";
         fin = "2019-04-15 21:00";
+        reserva2.setCodigoHabitacion(habitacion.getCodigoHabitacion());
         reserva2.setFechaHoraReservaInicio(LocalDateTime.parse(inicio, formatter));
         reserva2.setFechaHoraReservaFin(LocalDateTime.parse(fin,formatter));
 
@@ -56,6 +64,7 @@ public class DBService {
         reserva3.setFechaHoraReservaFin(LocalDateTime.of(2019, Month.MAY, 2, 00, 00, 00));
 
         reservaRepository.save(reserva1);
+        reservaRepository.save(reservaBruno);
         reservaRepository.save(reserva2);
         reservaRepository.save(reserva3);
 

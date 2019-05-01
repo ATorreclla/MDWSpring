@@ -4,6 +4,7 @@ import es.upm.miw.mdw.data_services.DBService;
 import es.upm.miw.mdw.dtos.HabitacionDTO;
 import es.upm.miw.mdw.dtos.HabitacionQueryDTO;
 import es.upm.miw.mdw.exceptions.BadRequestException;
+import es.upm.miw.mdw.exceptions.ConflictException;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -65,6 +66,23 @@ public class HabitacionControllerIT {
             List<HabitacionDTO> habitacionList = habitacionController.queryHabitaciones(new HabitacionQueryDTO(fechaHoraReservaInicio, fechaHoraReservaFin, "Alicante"));
             assertNotNull(habitacionList);
             assertEquals(1, habitacionList.size());
+    }
+
+    @Test
+    void testValidateHabitacion() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        assertDoesNotThrow(() -> habitacionController.isValidTimeForHabitacion("17",
+                LocalDateTime.parse("2019-04-29 18:00", formatter), LocalDateTime.parse("2019-04-29 19:00", formatter)));
+        assertThrows(BadRequestException.class, () -> habitacionController.isValidTimeForHabitacion("1",
+                LocalDateTime.parse("2019-04-29 18:00", formatter), LocalDateTime.parse("2019-04-29 19:00", formatter)));
+        assertThrows(ConflictException.class, () -> habitacionController.isValidTimeForHabitacion("17",
+                LocalDateTime.parse("2019-04-30 18:00", formatter), LocalDateTime.parse("2019-04-30 19:00", formatter)));
+        assertThrows(ConflictException.class, () -> habitacionController.isValidTimeForHabitacion("17",
+                LocalDateTime.parse("2019-04-30 15:00", formatter), LocalDateTime.parse("2019-04-30 19:00", formatter)));
+        assertThrows(ConflictException.class, () -> habitacionController.isValidTimeForHabitacion("17",
+                LocalDateTime.parse("2019-04-30 19:00", formatter), LocalDateTime.parse("2019-04-30 22:00", formatter)));
+        assertThrows(ConflictException.class, () -> habitacionController.isValidTimeForHabitacion("17",
+                LocalDateTime.parse("2019-04-30 15:00", formatter), LocalDateTime.parse("2019-04-30 22:00", formatter)));
     }
 
 

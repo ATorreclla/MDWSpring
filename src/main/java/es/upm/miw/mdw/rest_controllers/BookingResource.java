@@ -10,6 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 @PreAuthorize("permitAll()")
 @RestController
 @RequestMapping(BookingResource.BOOKING)
@@ -27,6 +30,9 @@ public class BookingResource {
     @Autowired
     ReservaRepository reservaRepository;
 
+    @Autowired
+    HabitacionController habitacionController;
+
     @PostMapping(value = SAVE)
     public ReservaDto save(@RequestBody ReservaDto dto){
         if(roomSearchService.checkAvailabeRoomOnDates(dto.getCodigoHabitacion(),
@@ -35,6 +41,14 @@ public class BookingResource {
             return new ReservaDto(reserva);
         }
         throw new ConflictException("Hotel room unavailable.");
+    }
+
+    @GetMapping(value = SAVE + VALIDATION)
+    public void isValidTimeForHabitacion(@PathVariable String codigoHabitacion, @RequestParam String fechaHoraReservaInicio,
+                                         @RequestParam String fechaHoraReservaFin) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        habitacionController.isValidTimeForHabitacion(codigoHabitacion, LocalDateTime.parse(fechaHoraReservaInicio, formatter),
+                LocalDateTime.parse(fechaHoraReservaFin, formatter));
     }
 
 }
