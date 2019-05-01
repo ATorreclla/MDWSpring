@@ -75,13 +75,13 @@ public class HabitacionControllerIT {
                 LocalDateTime.parse("2019-04-29 18:00", formatter), LocalDateTime.parse("2019-04-29 19:00", formatter)));
         assertThrows(BadRequestException.class, () -> habitacionController.isValidTimeForHabitacion("1",
                 LocalDateTime.parse("2019-04-29 18:00", formatter), LocalDateTime.parse("2019-04-29 19:00", formatter)));
-        assertThrows(ConflictException.class, () -> habitacionController.isValidTimeForHabitacion("17",
+        assertThrows(ConflictException.class, () -> habitacionController.isValidTimeForHabitacion("12",
                 LocalDateTime.parse("2019-04-30 18:00", formatter), LocalDateTime.parse("2019-04-30 19:00", formatter)));
-        assertThrows(ConflictException.class, () -> habitacionController.isValidTimeForHabitacion("17",
+        assertThrows(ConflictException.class, () -> habitacionController.isValidTimeForHabitacion("12",
                 LocalDateTime.parse("2019-04-30 15:00", formatter), LocalDateTime.parse("2019-04-30 19:00", formatter)));
-        assertThrows(ConflictException.class, () -> habitacionController.isValidTimeForHabitacion("17",
+        assertThrows(ConflictException.class, () -> habitacionController.isValidTimeForHabitacion("12",
                 LocalDateTime.parse("2019-04-30 19:00", formatter), LocalDateTime.parse("2019-04-30 22:00", formatter)));
-        assertThrows(ConflictException.class, () -> habitacionController.isValidTimeForHabitacion("17",
+        assertThrows(ConflictException.class, () -> habitacionController.isValidTimeForHabitacion("12",
                 LocalDateTime.parse("2019-04-30 15:00", formatter), LocalDateTime.parse("2019-04-30 22:00", formatter)));
     }
 
