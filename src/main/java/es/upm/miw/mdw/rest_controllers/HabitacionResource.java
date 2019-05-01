@@ -5,7 +5,6 @@ import es.upm.miw.mdw.dtos.HabitacionDTO;
 import es.upm.miw.mdw.dtos.HabitacionQueryDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController

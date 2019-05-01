@@ -51,7 +51,7 @@ public class HabitacionResourceIT {
     void testQueryHabitacionesNullQuery() {
         HttpClientErrorException exception = assertThrows(HttpClientErrorException.class, () ->
             this.restService.restBuilder(new RestBuilder<HabitacionDTO[]>())
-                .clazz(HabitacionDTO[].class).path(HabitacionResource.HABITACIONES)
+                .clazz(HabitacionDTO[].class).path(HabitacionResource.HABITACIONES).path(HabitacionResource.QUERY)
                 .body(null).post().build());
         assertEquals(HttpStatus.BAD_REQUEST, exception.getStatusCode());
     }
