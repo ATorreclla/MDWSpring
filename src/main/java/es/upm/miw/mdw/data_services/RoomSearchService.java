@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -31,5 +32,12 @@ public class RoomSearchService {
                 habitacionRepository.findByUbicacionIgnoreCase(location).stream()
                         .filter(room -> !idRooms.contains(room.getCodigoHabitacion()))
                         .collect(Collectors.toList());
+    }
+
+    public boolean checkAvailabeRoomOnDates(String idRoom, Date checkIn, Date checkOut){
+        Optional<Habitacion> room = habitacionRepository.findById(idRoom);
+        if(room.isPresent())
+            return reservaRepository.findBookingsOnRoomBetweenDates(idRoom, checkIn, checkOut).size()==0;
+        return false;
     }
 }

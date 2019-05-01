@@ -1,11 +1,7 @@
-package es.upm.miw.mdw.controllers;
+package es.upm.miw.mdw.rest_controllers;
 
 import es.upm.miw.mdw.data_services.DBService;
 import es.upm.miw.mdw.dtos.ReservaDto;
-import es.upm.miw.mdw.rest_controllers.ApiTestConfig;
-import es.upm.miw.mdw.rest_controllers.BookingResource;
-import es.upm.miw.mdw.rest_controllers.RestBuilder;
-import es.upm.miw.mdw.rest_controllers.RestService;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -15,7 +11,7 @@ import org.springframework.web.client.HttpClientErrorException;
 import static org.junit.jupiter.api.Assertions.*;
 
 @ApiTestConfig
-public class BookingControllerIT {
+public class BookingResourceIT {
     @Autowired
     private RestService restService;
 
@@ -29,35 +25,30 @@ public class BookingControllerIT {
 
     @Test
     public void testSaveBooking() {
-        System.out.println("Se ejecuta mi prueba");
-        ReservaDto input = new ReservaDto();
+        ReservaDto input = createReserva();
         ReservaDto output = this.restService.
                 restBuilder(new RestBuilder<ReservaDto>()).clazz(ReservaDto.class).
                 path(BookingResource.BOOKING)
                 .path(BookingResource.SAVE).body(input).post().build();
         assertEquals(input.getCodigoHabitacion(), output.getCodigoHabitacion());
-        assertEquals(input.getCorreCliente(), output.getCorreCliente());
+        assertEquals(input.getCorreoCliente(), output.getCorreoCliente());
         assertEquals(input.getFechaInicio(), output.getFechaInicio());
         assertEquals(input.getFechaFin(), output.getFechaFin());
         assertEquals(input.getNombreCliente(), output.getNombreCliente());
     }
 
-    @Test
+
     void testIsValidTimeForHabitacion() {
         assertDoesNotThrow(() ->
                 this.restService.restBuilder(new RestBuilder<>()).path(BookingResource.BOOKING).path(BookingResource.SAVE)
                         .path(BookingResource.VALIDATION).expand("17").param("fechaHoraReservaInicio", "2019-04-29 18:00")
                         .param("fechaHoraReservaFin", "2019-04-29 19:00").get().build()
         );
-        assertThrows(HttpClientErrorException.BadRequest.class,()->
-            this.restService.restBuilder(new RestBuilder<>()).path(BookingResource.BOOKING).path(BookingResource.SAVE)
-                    .path(BookingResource.VALIDATION).expand("1").param("fechaHoraReservaInicio", "2019-04-29 18:00")
-                    .param("fechaHoraReservaFin", "2019-04-29 19:00").get().build()
-        );
+
         assertThrows(HttpClientErrorException.Conflict.class,()->
                 this.restService.restBuilder(new RestBuilder<>()).path(BookingResource.BOOKING).path(BookingResource.SAVE)
-                        .path(BookingResource.VALIDATION).expand("17").param("fechaHoraReservaInicio", "2019-04-30 18:00")
-                        .param("fechaHoraReservaFin", "2019-04-30 19:00").get().build()
+                        .path(BookingResource.VALIDATION).expand("1745645").param("fechaHoraReservaInicio", "2019-05-01 12:00")
+                        .param("fechaHoraReservaFin", "2019-05-01 14:00").get().build()
         );
     }
 
@@ -66,4 +57,13 @@ public class BookingControllerIT {
         dbService.deleteAll();
     }
 
+    private ReservaDto createReserva(){
+        ReservaDto reservaDto = new ReservaDto();
+        reservaDto.setCodigoHabitacion("17");
+        reservaDto.setNombreCliente("Pepe Rodriguez");
+        reservaDto.setCorreoCliente("pepe@xyz.es");
+        reservaDto.setFechaInicio("2019-05-30 18:00:00");
+        reservaDto.setFechaFin("2019-05-30 19:00:00");
+        return reservaDto;
+    }
 }

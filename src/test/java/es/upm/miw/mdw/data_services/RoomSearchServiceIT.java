@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @TestConfig
@@ -37,6 +39,18 @@ public class RoomSearchServiceIT {
         assertEquals(2, roomSearchService.findAvailablesRooms("valencia", checkIn, checkOut).size());
         assertEquals(1, roomSearchService.findAvailablesRooms("alicante", checkIn, checkOut).size());
         assertEquals(0, roomSearchService.findAvailablesRooms("madrid", checkIn, checkOut).size());
+    }
+
+    @Test
+    void testcheckAvailabeRoomOnDates(){
+        SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date checkIn = null, checkOut = null;
+        try {
+            checkIn = sd.parse("2019-05-01 13:00:00");
+            checkOut = sd.parse("2020-01-01 15:00:00");
+        }catch(Exception ex){}
+        assertFalse(roomSearchService.checkAvailabeRoomOnDates("1745645", checkIn, checkOut));
+        assertTrue(roomSearchService.checkAvailabeRoomOnDates("17", checkIn, checkOut));
     }
 
     @AfterEach

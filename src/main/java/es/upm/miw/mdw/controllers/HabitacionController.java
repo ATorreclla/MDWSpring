@@ -1,5 +1,6 @@
 package es.upm.miw.mdw.controllers;
 
+import es.upm.miw.mdw.documents.Habitacion;
 import es.upm.miw.mdw.dtos.HabitacionDTO;
 import es.upm.miw.mdw.dtos.HabitacionQueryDTO;
 import es.upm.miw.mdw.exceptions.BadRequestException;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import es.upm.miw.mdw.repositories.HabitacionRepository;
 
@@ -39,5 +41,10 @@ public class HabitacionController {
                 .collect(Collectors.toList());
     }
 
-
+    public boolean checkAvailabeRoomOnDates(String idRoom, Date checkIn, Date checkOut){
+        Optional<Habitacion> room = habitacionRepository.findById(idRoom);
+        if(room.isPresent())
+            return reservaRepository.findBookingsOnRoomBetweenDates(idRoom, checkIn, checkOut).size()==0;
+        return false;
+    }
 }
