@@ -2,9 +2,12 @@ package es.upm.miw.mdw.documents;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.util.StringUtils;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Document
 public class Reserva {
@@ -21,6 +24,32 @@ public class Reserva {
     private float precioReserva;
 
     private String nombreCliente;
+
+    public String getLocalizador() {
+        return localizador;
+    }
+
+    public void generaLocalizador(){
+        if(this.localizador==null){
+            if(this.nombreCliente!=null){
+                long epoch = System.currentTimeMillis()/1000;
+                this.localizador = firstLetterCapitalWithSingleSpace(StringUtils.capitalize(this.nombreCliente)) + epoch;
+            }
+        }
+    }
+
+    private String firstLetterCapitalWithSingleSpace(final String words) {
+        return Stream.of(words.trim().split("\\s"))
+                .filter(word -> word.length() > 0)
+                .map(word -> word.substring(0, 1).toUpperCase())
+                .collect(Collectors.joining(""));
+    }
+
+    public void setLocalizador(String localizador) {
+        this.localizador = localizador;
+    }
+
+    private String localizador;
 
     private String correoCliente;
 
@@ -89,6 +118,7 @@ public class Reserva {
                 ", fechaHoraReservaFin=" + fechaHoraReservaFin +
                 ", precioReserva=" + precioReserva +
                 ", nombreCliente='" + nombreCliente + '\'' +
+                ", localizador='" + localizador + '\'' +
                 ", correCliente='" + correoCliente + '\'' +
                 '}';
     }

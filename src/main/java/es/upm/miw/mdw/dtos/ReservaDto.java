@@ -12,6 +12,8 @@ public class ReservaDto {
 
     private static final String DATE_FORMATTER= "yyyy-MM-dd HH:mm:ss";
 
+    private String codigoReserva;
+
     private String codigoHabitacion;
 
     private String fechaInicio;
@@ -24,6 +26,8 @@ public class ReservaDto {
 
     private String correoCliente;
 
+    private String localizador;
+
     public ReservaDto(){
 
     }
@@ -35,6 +39,24 @@ public class ReservaDto {
         this.precio = reserva.getPrecioReserva();
         this.nombreCliente = reserva.getNombreCliente();
         this.correoCliente = reserva.getCorreoCliente();
+        this.localizador = reserva.getLocalizador();
+        this.codigoReserva = reserva.getCodigoReserva();
+    }
+
+    public String getLocalizador() {
+        return localizador;
+    }
+
+    public void setLocalizador(String localizador) {
+        this.localizador = localizador;
+    }
+
+    public String getCodigoReserva() {
+        return codigoReserva;
+    }
+
+    public void setCodigoReserva(String codigoReserva) {
+        this.codigoReserva = codigoReserva;
     }
 
     public String getCodigoHabitacion() {
@@ -101,6 +123,7 @@ public class ReservaDto {
         reserva.setPrecioReserva(this.getPrecio());
         reserva.setFechaHoraReservaInicio(ReservaDto.convertStringToLocalDateTime(this.getFechaInicio()));
         reserva.setFechaHoraReservaFin(ReservaDto.convertStringToLocalDateTime(this.getFechaFin()));
+        reserva.generaLocalizador();
         return reserva;
     }
 
@@ -121,5 +144,19 @@ public class ReservaDto {
     public static LocalDateTime convertStringToLocalDateTime(String dateTime) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(ReservaDto.DATE_FORMATTER);
         return LocalDateTime.parse(dateTime,formatter);
+    }
+
+    @Override
+    public String toString() {
+        return "ReservaDto{" +
+                "codigoReserva='" + codigoReserva + '\'' +
+                ", codigoHabitacion='" + codigoHabitacion + '\'' +
+                ", fechaInicio='" + fechaInicio + '\'' +
+                ", fechaFin='" + fechaFin + '\'' +
+                ", precio=" + precio +
+                ", nombreCliente='" + nombreCliente + '\'' +
+                ", correoCliente='" + correoCliente + '\'' +
+                ", localizador='" + localizador + '\'' +
+                '}';
     }
 }
